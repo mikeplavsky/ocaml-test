@@ -13,3 +13,32 @@ let rec assoc key = function
       assoc key l
   | [] -> raise Not_found;;
 
+let rec fact1 i = 
+  if i = 0 then
+    1
+  else 
+    i * fact1 (i-1)
+
+let fact2 i = 
+  let rec loop accum i =
+    if i=0 then
+      accum
+    else 
+      loop (i*accum) (i-1)
+  in loop 1 i 
+
+let rec map f = function
+  h :: t -> f h :: map f t
+  | [] -> []
+
+let rec rev_map accum f = function
+  h :: t -> rev_map (f h :: accum) f t
+  | [] -> accum
+
+let map1 f l = rev_map [] f l 
+
+
+
+
+
+
