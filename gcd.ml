@@ -35,7 +35,27 @@ let rec rev_map accum f = function
   h :: t -> rev_map (f h :: accum) f t
   | [] -> accum
 
-let map1 f l = rev_map [] f l 
+let rec rev accum = function 
+  h :: t -> rev (h :: accum ) t
+  | [] -> accum
+
+let map1 f l = rev [] (rev_map [] f l) 
+
+let rec  rev accum = function
+  h :: t -> rev (h :: accum) t
+  | [] -> accum
+
+let head = function
+  h :: t -> h
+  | [] -> raise Not_found
+
+let tail = function 
+  h :: t -> t
+  | [] -> raise Not_found
+
+
+
+
 
 
 
