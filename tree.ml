@@ -8,12 +8,19 @@ let rec cardinality = function
 
 let empty = Leaf
 
-let insert x s = Node( x, Leaf, s)
+let rec insert x = function
+  Leaf -> Node( x, Leaf, Leaf)
+  | Node(y, left, right) as node ->
+    if x < y then
+      Node(y, insert x left, right)
+    else if x > y then
+      Node(y, left, insert x right)
+    else 
+      node
 
 let rec set_of_list = function
   [] -> empty
   | h :: t -> insert h (set_of_list t)
-
 
 let rec mem x = function 
   Leaf -> false
