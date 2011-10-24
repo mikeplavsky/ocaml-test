@@ -24,6 +24,6 @@ let rec set_of_list = function
 
 let rec mem x = function 
   Leaf -> false
-  | Node(y,left,right) -> x=y || mem x left || mem x right
+  | Node(y,left,right) -> x=y || (x < y && mem x left) || (x > y && mem x right)
 
 
